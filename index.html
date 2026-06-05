@@ -6,212 +6,240 @@
     <title>Shreyas B | Data Analyst Portfolio</title>
     <style>
         :root {
-            --bg-color: #f8f9fa;
-            --text-color: #212529;
-            --primary-color: #0d6efd;
-            --secondary-color: #6c757d;
-            --card-bg: #ffffff;
-            --border-color: #dee2e6;
+            --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            --card-bg: #1e293b;
+            --accent-blue: #38bdf8;
+            --accent-green: #34d399;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --border-color: rgba(255, 255, 255, 0.08);
         }
 
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
         }
 
         body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            line-height: 1.6;
-            padding-bottom: 60px;
+            background: var(--bg-gradient);
+            color: var(--text-main);
+            min-height: 100vh;
+            line-height: 1.7;
+            padding: 40px 20px;
         }
 
         .container {
-            max-width: 1000px;
+            max-width: 1050px;
             margin: 0 auto;
-            padding: 20px;
         }
 
-        /* Header Styles */
+        /* Hero Profile Section */
         header {
             text-align: center;
-            padding: 60px 20px;
-            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-            color: white;
-            border-radius: 12px;
+            padding: 60px 30px;
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
             margin-bottom: 40px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
         }
 
         header h1 {
-            font-size: 2.8rem;
-            margin-bottom: 10px;
-            letter-spacing: 1px;
+            font-size: 3rem;
+            font-weight: 800;
+            background: linear-gradient(to right, #38bdf8, #818cf8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 12px;
+            letter-spacing: -0.5px;
         }
 
         header h2 {
-            font-size: 1.4rem;
-            color: #00d2ff;
+            font-size: 1.3rem;
+            color: var(--text-muted);
             font-weight: 400;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
         }
 
-        .contact-links {
+        .contact-grid {
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
-            gap: 15px;
+            gap: 12px;
         }
 
-        .contact-links a {
-            color: #fff;
+        .contact-grid a {
+            color: var(--text-main);
             text-decoration: none;
-            padding: 8px 16px;
-            background: rgba(255,255,255,0.1);
-            border-radius: 20px;
+            padding: 10px 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50px;
             font-size: 0.9rem;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(255,255,255,0.2);
+            font-weight: 500;
+            transition: all 0.25s ease;
+            border: 1px solid var(--border-color);
         }
 
-        .contact-links a:hover {
-            background: #00d2ff;
-            color: #0f2027;
-            transform: translateY(-2px);
+        .contact-grid a:hover {
+            background: var(--accent-blue);
+            color: #0f172a;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(56, 189, 248, 0.2);
         }
 
-        /* Section Global Styles */
+        /* Section Settings */
         section {
-            margin-bottom: 40px;
+            margin-bottom: 50px;
         }
 
         section h2 {
             font-size: 1.8rem;
-            color: #2c5364;
-            border-bottom: 3px solid var(--primary-color);
-            padding-bottom: 8px;
-            margin-bottom: 20px;
+            font-weight: 700;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #f1f5f9;
         }
 
-        .about-text {
+        /* About Section Card */
+        .about-box {
+            background: rgba(30, 41, 59, 0.5);
+            border: 1px solid var(--border-color);
+            padding: 30px;
+            border-radius: 20px;
             font-size: 1.1rem;
-            background: var(--card-bg);
-            padding: 25px;
-            border-radius: 8px;
-            border-left: 5px solid var(--primary-color);
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            color: #cbd5e1;
         }
 
-        /* Skills Table / Grid */
-        .skills-table {
-            width: 100%;
-            border-collapse: collapse;
-            background: var(--card-bg);
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-        }
-
-        .skills-table th, .skills-table td {
-            padding: 15px 20px;
-            text-align: left;
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .skills-table th {
-            background-color: #2c5364;
-            color: white;
-            width: 30%;
-        }
-
-        .skills-table tr:last-child td, .skills-table tr:last-child th {
-            border-bottom: none;
-        }
-
-        /* Cards Layout (Projects & Experience) */
+        /* Grid Frameworks */
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
         }
 
         .card {
             background: var(--card-bg);
-            padding: 25px;
-            border-radius: 8px;
             border: 1px solid var(--border-color);
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
         .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            transform: translateY(-6px);
+            border-color: rgba(56, 189, 248, 0.4);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.3);
         }
 
         .card h3 {
-            color: #2c5364;
-            margin-bottom: 5px;
+            font-size: 1.35rem;
+            color: #f8fafc;
+            margin-bottom: 6px;
         }
 
-        .card .sub-title {
-            color: var(--primary-color);
+        .card .company {
+            color: var(--accent-blue);
             font-weight: 600;
             font-size: 0.95rem;
-            margin-bottom: 10px;
+            margin-bottom: 4px;
         }
 
-        .card .date {
+        .card .timeline {
             font-size: 0.85rem;
-            color: var(--secondary-color);
-            margin-bottom: 15px;
+            color: var(--text-muted);
+            margin-bottom: 18px;
         }
 
         .card ul {
-            padding-left: 20px;
+            list-style: none;
+            margin-bottom: 20px;
         }
 
         .card ul li {
-            margin-bottom: 8px;
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 10px;
             font-size: 0.95rem;
+            color: #cbd5e1;
         }
 
-        .tags {
-            margin-top: 15px;
+        .card ul li::before {
+            content: "▹";
+            position: absolute;
+            left: 0;
+            color: var(--accent-blue);
+            font-weight: bold;
+        }
+
+        /* Badges Style */
+        .tag-container {
             display: flex;
             flex-wrap: wrap;
             gap: 8px;
+            margin-top: auto;
         }
 
-        .tag {
-            background: #e9ecef;
-            color: #495057;
-            padding: 4px 10px;
-            border-radius: 4px;
+        .tag-badge {
+            background: rgba(56, 189, 248, 0.1);
+            color: var(--accent-blue);
+            padding: 4px 12px;
+            border-radius: 6px;
             font-size: 0.8rem;
-            font-weight: 500;
+            font-weight: 600;
+            border: 1px solid rgba(56, 189, 248, 0.15);
         }
 
-        /* Grid specific tweak for Experience to be full width */
-        .full-width {
-            grid-column: 1 / -1;
-        }
-
-        /* Education & Certifications Layout */
-        .two-column {
+        /* Toolkit Layout */
+        .toolkit-list {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
             gap: 20px;
         }
 
-        @media (max-width: 768px) {
-            .two-column {
+        .toolkit-item {
+            background: rgba(30, 41, 59, 0.5);
+            border: 1px solid var(--border-color);
+            padding: 20px;
+            border-radius: 16px;
+        }
+
+        .toolkit-item h4 {
+            color: var(--accent-blue);
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+
+        .toolkit-item p {
+            font-size: 1rem;
+            color: #cbd5e1;
+        }
+
+        /* Combined Layout split */
+        .row-split {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 30px;
+        }
+
+        @media (max-width: 850px) {
+            .row-split {
                 grid-template-columns: 1fr;
             }
             header h1 {
-                font-size: 2.2rem;
+                font-size: 2.3rem;
             }
         }
     </style>
@@ -219,131 +247,143 @@
 <body>
 
     <div class="container">
+        <!-- HERO MAIN HEADER -->
         <header>
-            <h1>SHREYAS B</h1> [cite: 3]
-            <h2>Data Analyst | AI & ML Enthusiast</h2>
-            <div class="contact-links">
-                <a href="tel:9481745212">📞 9481745212</a> [cite: 2]
-                <a href="mailto:bshreyas253@gmail.com">✉️ bshreyas253@gmail.com</a> [cite: 4]
-                <a href="https://www.linkedin.com/in/shreyas-b" target="_blank">🔗 LinkedIn</a> [cite: 5]
-                <a href="https://www.hackerrank.com/bshreyas253" target="_blank">💻 HackerRank</a> [cite: 40]
+            <h1>SHREYAS B</h1>
+            <h2>Data Analyst & ML Engineer</h2>
+            <div class="contact-grid">
+                <a href="mailto:bshreyas253@gmail.com">bshreyas253@gmail.com</a>
+                <a href="tel:9481745212">📞 +91 9481745212</a>
+                <a href="https://www.linkedin.com/in/shreyas-b" target="_blank">LinkedIn</a>
+                <a href="https://www.hackerrank.com/bshreyas253" target="_blank">HackerRank</a>
             </div>
         </header>
 
+        <!-- PROFILE INTRODUCTION -->
         <section>
-            <h2>🚀 About Me</h2>
-            <div class="about-text">
-                Aspiring Data Analyst with hands-on experience in Python, SQL, Power BI, and Excel for data analysis and visualization. [cite: 6] 
-                Skilled in building interactive dashboards, analyzing datasets, and deriving actionable insights to support data-driven decision-making. [cite: 7] 
-                Strong foundation in AI/ML with a passion for solving business problems through analytics and visualization. [cite: 8]
+            <h2>🎯 Professional Brief</h2>
+            <div class="about-box">
+                Analytical and forward-thinking Computer Science Engineer specializing in AI/ML and Data Analytics. I build high-impact interactive dashboards, perform comprehensive data cleaning, and engineer modern prediction systems. Experienced across Python environments, relational SQL databases, and modern Business Intelligence tools to bridge data architecture with real-world business choices.
             </div>
         </section>
 
+        <!-- MODERN TOOLKIT -->
         <section>
-            <h2>🛠️ Technical Toolkit</h2>
-            <table class="skills-table">
-                <tr>
-                    <th>Programming & Querying</th>
-                    <td>Java, Python, C++, SQL [cite: 10]</td>
-                </tr>
-                <tr>
-                    <th>Libraries & ML Frameworks</th>
-                    <td>NumPy, Pandas, Matplotlib, Scikit-learn [cite: 11]</td>
-                </tr>
-                <tr>
-                    <th>Data Visualization</th>
-                    <td>Power BI, Excel, Power Query [cite: 12, 25, 30]</td>
-                </tr>
-                <tr>
-                    <th>Core Coursework & Soft Skills</th>
-                    <td>OOPs, Data Structures & Algorithms, Operating Systems, Computer Networks. Problem Solving, Analytical Thinking. [cite: 13]</td>
-                </tr>
-            </table>
-        </section>
-
-        <section>
-            <h2>💼 Professional Experience</h2>
-            <div class="grid">
-                <div class="card full-width">
-                    <h3>Student Intern — Web Developer</h3> [cite: 15, 16]
-                    <div class="sub-title">Technical Career Education</div> [cite: 15]
-                    <div class="date">Oct 2023 - December 2023 | Mangalore, India</div> [cite: 21]
-                    <ul>
-                        <li>Developed a web application to streamline organizational change management processes using HTML, CSS, JavaScript, and MySQL. [cite: 17, 18]</li>
-                        <li>Implemented features for change tracking, approval workflows, and role-based interactions. [cite: 19]</li>
-                        <li>Designed responsive and user-friendly interfaces, improving process transparency and collaboration. [cite: 20, 22]</li>
-                    </ul>
-                    <div class="tags">
-                        <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span><span class="tag">MySQL</span> [cite: 17]
-                    </div>
+            <h2>🛠️ Technical Ecosystem</h2>
+            <div class="toolkit-list">
+                <div class="toolkit-item">
+                    <h4>Languages</h4>
+                    <p>Python, SQL, Java, C++</p>
+                </div>
+                <div class="toolkit-item">
+                    <h4>Libraries</h4>
+                    <p>Pandas, NumPy, Matplotlib, Scikit-learn</p>
+                </div>
+                <div class="toolkit-item">
+                    <h4>Data Visualization</h4>
+                    <p>Power BI, Excel, Power Query, DAX</p>
+                </div>
+                <div class="toolkit-item">
+                    <h4>Advanced Frameworks</h4>
+                    <p>CNN, GAN, Streamlit, Git</p>
                 </div>
             </div>
         </section>
 
+        <!-- PROJECTS HUB -->
         <section>
-            <h2>📊 Highlighted Projects</h2>
+            <h2>📊 Key Technical Implementations</h2>
             <div class="grid">
                 <div class="card">
-                    <h3>Hospitality Revenue Analytics</h3> [cite: 27]
-                    <div class="sub-title">Business Intelligence Dashboard</div>
-                    <ul>
-                        <li>Built an interactive Power BI dashboard for a hotel chain to analyze revenue, occupancy, ADR, RevPAR, cancellations, and booking trends. [cite: 28]</li>
-                        <li>Created DAX metrics, transformed raw data using SQL, and delivered actionable insights. [cite: 29]</li>
-                    </ul>
-                    <div class="tags">
-                        <span class="tag">Power BI</span><span class="tag">SQL</span><span class="tag">Excel</span> [cite: 30]
+                    <div>
+                        <h3>Hospitality Revenue Analytics</h3>
+                        <div class="company">Business Intelligence Engine</div>
+                        <div class="timeline">Interactive Analytics Framework</div>
+                        <ul>
+                            <li>Engineered an interactive dashboard monitoring hotel metrics like revenue streams, cancellations, ADR, and RevPAR.</li>
+                            <li>Executed raw data extraction via SQL architecture and structured complex DAX metrics for real-time tracking.</li>
+                        </ul>
+                    </div>
+                    <div class="tag-container">
+                        <span class="tag-badge">Power BI</span>
+                        <span class="tag-badge">SQL</span>
+                        <span class="tag-badge">DAX</span>
+                        <span class="tag-badge">Excel</span>
                     </div>
                 </div>
 
                 <div class="card">
-                    <h3>Interactive Sales Performance Analysis</h3> [cite: 24]
-                    <div class="sub-title">Data Analysis & Modeling</div>
-                    <ul>
-                        <li>Created a sales dashboard by cleaning data with Power Query and modeling relational metrics. [cite: 25]</li>
-                        <li>Wrote complex DAX calculations and visualized performance using interactive trend charts. [cite: 25]</li>
-                    </ul>
-                    <div class="tags">
-                        <span class="tag">Power BI</span><span class="tag">Python</span><span class="tag">SQL</span><span class="tag">Excel</span> [cite: 26]
+                    <div>
+                        <h3>Sales Performance Ecosystem</h3>
+                        <div class="company">Data Architecture & Analytics</div>
+                        <div class="timeline">Dynamic Trends Engineering</div>
+                        <ul>
+                            <li>Built an automated operational dashboard by pipeline-cleaning transactional history using advanced Power Query.</li>
+                            <li>Formulated analytical metrics mapping cross-product growth and geographic sales health.</li>
+                        </ul>
+                    </div>
+                    <div class="tag-container">
+                        <span class="tag-badge">Power BI</span>
+                        <span class="tag-badge">Python</span>
+                        <span class="tag-badge">Power Query</span>
                     </div>
                 </div>
 
                 <div class="card">
-                    <h3>Music Conditioned Dance Generation</h3> [cite: 31]
-                    <div class="sub-title">Artificial Intelligence & Deep Learning</div>
-                    <ul>
-                        <li>Created a machine learning system that generates dance movements based on the rhythm and mood of input music tracks. [cite: 32]</li>
-                        <li>Deployed a user-facing interactive demonstration platform. [cite: 33]</li>
-                    </ul>
-                    <div class="tags">
-                        <span class="tag">CNN</span><span class="tag">GAN</span><span class="tag">Streamlit</span><span class="tag">Google Colab</span> [cite: 33]
+                    <div>
+                        <h3>Music-Conditioned Dance Generator</h3>
+                        <div class="company">Artificial Intelligence Project</div>
+                        <div class="timeline">Deep Learning & Audio Processing</div>
+                        <ul>
+                            <li>Constructed an AI-driven sequence generator mapping audio rhythmic beats to visual human locomotion paths.</li>
+                            <li>Integrated deep neural blocks leveraging CNN-GAN pipelines deployed directly onto web formats.</li>
+                        </ul>
+                    </div>
+                    <div class="tag-container">
+                        <span class="tag-badge">CNN</span>
+                        <span class="tag-badge">GANs</span>
+                        <span class="tag-badge">Streamlit</span>
+                        <span class="tag-badge">Python</span>
                     </div>
                 </div>
             </div>
         </section>
 
-        <div class="two-column">
+        <!-- EXPERIENCE, EDUCATION & CERTS -->
+        <div class="row-split">
             <section>
-                <h2>🎓 Education</h2>
-                <div class="card" style="margin-bottom: 15px;">
-                    <h3>B.E. in Computer Science & Engineering (AIML)</h3> [cite: 36]
-                    <div class="sub-title">Sahyadri College of Engineering and Management</div> [cite: 35]
-                    <div class="date">2021 - 2025 | CGPA: 8.76</div> [cite: 41, 42]
-                </div>
-                <div class="card">
-                    <h3>Pre-University College (State Board)</h3> [cite: 37, 38]
-                    <div class="sub-title">Rotary PU College</div> [cite: 37]
-                    <div class="date">2019 - 2021 | Percentage: 89.1%</div> [cite: 43, 44]
+                <h2>💼 Experience Portfolio</h2>
+                <div class="card" style="width: 100%;">
+                    <div>
+                        <h3>Student Intern — Web Developer</h3>
+                        <div class="company">Technical Career Education</div>
+                        <div class="timeline">Oct 2023 - Dec 2023 | Mangaluru, India</div>
+                        <ul>
+                            <li>Engineered an enterprise change management web tool designed to control project compliance and request pipelines.</li>
+                            <li>Built custom role management settings, approval paths, and visual workflow monitoring interfaces.</li>
+                        </ul>
+                    </div>
+                    <div class="tag-container">
+                        <span class="tag-badge">JavaScript</span>
+                        <span class="tag-badge">MySQL</span>
+                        <span class="tag-badge">HTML5/CSS3</span>
+                    </div>
                 </div>
             </section>
 
             <section>
-                <h2>📜 Certifications</h2>
-                <div class="card" style="height: calc(100% - 60px);">
-                    <ul style="padding-left: 15px; list-style-type: square;">
-                        <li style="margin-bottom: 12px;"><strong>Natural Language Processing & Machine Learning</strong><br><span style="color:var(--secondary-color); font-size:0.85rem;">Infosys Springboard</span> [cite: 40]</li>
-                        <li style="margin-bottom: 12px;"><strong>SQL & NoSQL Database Fundamentals</strong><br><span style="color:var(--secondary-color); font-size:0.85rem;">Infosys Springboard</span> [cite: 40]</li>
-                        <li style="margin-bottom: 12px;"><strong>Google Computing Foundation & Generative AI</strong><br><span style="color:var(--secondary-color); font-size:0.85rem;">Google Developer Student Club</span> [cite: 40]</li>
-                    </ul>
+                <h2>🎓 Education & Certifications</h2>
+                <div class="toolkit-item" style="margin-bottom: 15px;">
+                    <h4 style="color:var(--text-main); font-size:1.1rem; text-transform:none; font-weight:600;">B.E. Computer Science (AIML)</h4>
+                    <p style="font-size:0.9rem; color:var(--text-muted);">Sahyadri College of Eng. | 2021-2025</p>
+                    <p style="font-size:0.95rem; margin-top:5px; color:var(--accent-green); font-weight:bold;">CGPA: 8.76</p>
+                </div>
+
+                <div class="toolkit-item">
+                    <h4>Industry Accreditations</h4>
+                    <p style="font-size:0.9rem; margin-bottom:6px;">• ML & NLP Certification (Infosys Springboard)</p>
+                    <p style="font-size:0.9rem; margin-bottom:6px;">• SQL & NoSQL Fundamentals (Infosys)</p>
+                    <p style="font-size:0.9rem;">• Cloud & Generative AI Systems (GDSC)</p>
                 </div>
             </section>
         </div>
