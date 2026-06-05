@@ -8,11 +8,13 @@
         :root {
             --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
             --card-bg: #1e293b;
+            --sidebar-bg: #0f172a;
             --accent-blue: #38bdf8;
             --accent-green: #34d399;
             --text-main: #f8fafc;
             --text-muted: #94a3b8;
             --border-color: rgba(255, 255, 255, 0.08);
+            --sidebar-width: 260px;
         }
 
         * {
@@ -20,6 +22,7 @@
             margin: 0;
             padding: 0;
             font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            scroll-behavior: smooth;
         }
 
         body {
@@ -27,109 +30,154 @@
             color: var(--text-main);
             min-height: 100vh;
             line-height: 1.7;
-            padding: 40px 20px;
+            display: flex;
         }
 
-        .container {
-            max-width: 1050px;
-            margin: 0 auto;
+        /* --- LEFT SIDEBAR NAVIGATION --- */
+        .sidebar {
+            width: var(--sidebar-width);
+            height: 100vh;
+            background: var(--sidebar-bg);
+            position: fixed;
+            top: 0;
+            left: 0;
+            border-right: 1px solid var(--border-color);
+            padding: 40px 24px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            z-index: 100;
         }
 
-        /* Hero Profile Section */
-        header {
-            text-align: center;
-            padding: 60px 30px;
-            background: rgba(30, 41, 59, 0.7);
-            backdrop-filter: blur(12px);
-            border: 1px solid var(--border-color);
-            border-radius: 24px;
-            margin-bottom: 40px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-        }
-
-        header h1 {
-            font-size: 3rem;
+        .profile-info h1 {
+            font-size: 1.6rem;
             font-weight: 800;
             background: linear-gradient(to right, #38bdf8, #818cf8);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            margin-bottom: 12px;
-            letter-spacing: -0.5px;
+            margin-bottom: 4px;
         }
 
-        header h2 {
-            font-size: 1.3rem;
+        .profile-info p {
+            font-size: 0.85rem;
             color: var(--text-muted);
-            font-weight: 400;
-            margin-bottom: 25px;
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: 1px;
+            margin-bottom: 40px;
         }
 
-        .contact-grid {
+        .nav-menu {
             display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
+            flex-direction: column;
+            gap: 8px;
+            flex-grow: 1;
+        }
+
+        .nav-item {
+            color: var(--text-muted);
+            text-decoration: none;
+            padding: 12px 16px;
+            border-radius: 12px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
             gap: 12px;
         }
 
-        .contact-grid a {
+        .nav-item:hover {
+            color: var(--accent-blue);
+            background: rgba(56, 189, 248, 0.05);
+            transform: translateX(4px);
+        }
+
+        /* Sidebar Footer Contact Details */
+        .sidebar-footer {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            border-top: 1px solid var(--border-color);
+            padding-top: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .sidebar-footer a {
             color: var(--text-main);
             text-decoration: none;
-            padding: 10px 20px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 50px;
-            font-size: 0.9rem;
-            font-weight: 500;
-            transition: all 0.25s ease;
-            border: 1px solid var(--border-color);
+            transition: color 0.2s ease;
         }
 
-        .contact-grid a:hover {
-            background: var(--accent-blue);
-            color: #0f172a;
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(56, 189, 248, 0.2);
+        .sidebar-footer a:hover {
+            color: var(--accent-blue);
         }
 
-        /* Section Settings */
+        /* --- MAIN CONTENT WINDOW --- */
+        .main-content {
+            margin-left: var(--sidebar-width);
+            flex-grow: 1;
+            padding: 60px 50px;
+            max-width: 1100px;
+        }
+
+        /* --- SECTION ENTRANCE ANIMATIONS --- */
         section {
-            margin-bottom: 50px;
+            background: rgba(30, 41, 59, 0.4);
+            border: 1px solid var(--border-color);
+            padding: 40px;
+            border-radius: 24px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            
+            /* Animation triggers */
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+
+        /* Staggering the entrance delay per section */
+        section:nth-child(1) { animation-delay: 0.1s; }
+        section:nth-child(2) { animation-delay: 0.2s; }
+        section:nth-child(3) { animation-delay: 0.3s; }
+        section:nth-child(4) { animation-delay: 0.4s; }
+        section:nth-child(5) { animation-delay: 0.5s; }
+        section:nth-child(6) { animation-delay: 0.6s; }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         section h2 {
             font-size: 1.8rem;
             font-weight: 700;
-            margin-bottom: 25px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
+            margin-bottom: 24px;
             color: #f1f5f9;
+            border-left: 4px solid var(--accent-blue);
+            padding-left: 12px;
         }
 
-        /* About Section Card */
-        .about-box {
-            background: rgba(30, 41, 59, 0.5);
-            border: 1px solid var(--border-color);
-            padding: 30px;
-            border-radius: 20px;
+        .about-text {
             font-size: 1.1rem;
             color: #cbd5e1;
         }
 
-        /* Grid Frameworks */
+        /* Grid structures for Projects & Frameworks */
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 25px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
         }
 
         .card {
             background: var(--card-bg);
             border: 1px solid var(--border-color);
-            padding: 30px;
-            border-radius: 20px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            padding: 28px;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             display: flex;
             flex-direction: column;
@@ -137,28 +185,28 @@
         }
 
         .card:hover {
-            transform: translateY(-6px);
-            border-color: rgba(56, 189, 248, 0.4);
-            box-shadow: 0 12px 30px rgba(0,0,0,0.3);
+            transform: translateY(-5px);
+            border-color: rgba(56, 189, 248, 0.3);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.25);
         }
 
         .card h3 {
-            font-size: 1.35rem;
+            font-size: 1.25rem;
             color: #f8fafc;
-            margin-bottom: 6px;
+            margin-bottom: 4px;
         }
 
-        .card .company {
+        .card .subtitle {
             color: var(--accent-blue);
             font-weight: 600;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             margin-bottom: 4px;
         }
 
         .card .timeline {
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             color: var(--text-muted);
-            margin-bottom: 18px;
+            margin-bottom: 16px;
         }
 
         .card ul {
@@ -168,8 +216,8 @@
 
         .card ul li {
             position: relative;
-            padding-left: 20px;
-            margin-bottom: 10px;
+            padding-left: 18px;
+            margin-bottom: 8px;
             font-size: 0.95rem;
             color: #cbd5e1;
         }
@@ -179,47 +227,46 @@
             position: absolute;
             left: 0;
             color: var(--accent-blue);
-            font-weight: bold;
         }
 
-        /* Badges Style */
+        /* Badges Styling */
         .tag-container {
             display: flex;
             flex-wrap: wrap;
-            gap: 8px;
+            gap: 6px;
             margin-top: auto;
         }
 
         .tag-badge {
-            background: rgba(56, 189, 248, 0.1);
+            background: rgba(56, 189, 248, 0.08);
             color: var(--accent-blue);
-            padding: 4px 12px;
+            padding: 3px 10px;
             border-radius: 6px;
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             font-weight: 600;
-            border: 1px solid rgba(56, 189, 248, 0.15);
+            border: 1px solid rgba(56, 189, 248, 0.12);
         }
 
-        /* Toolkit Layout */
+        /* Toolkit / Tech Stack box designs */
         .toolkit-list {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 20px;
         }
 
         .toolkit-item {
-            background: rgba(30, 41, 59, 0.5);
+            background: rgba(30, 41, 59, 0.6);
             border: 1px solid var(--border-color);
             padding: 20px;
-            border-radius: 16px;
+            border-radius: 14px;
         }
 
         .toolkit-item h4 {
             color: var(--accent-blue);
-            font-size: 0.95rem;
+            font-size: 0.85rem;
             text-transform: uppercase;
             letter-spacing: 1px;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
         }
 
         .toolkit-item p {
@@ -227,48 +274,71 @@
             color: #cbd5e1;
         }
 
-        /* Combined Layout split */
-        .row-split {
-            display: grid;
-            grid-template-columns: 1.2fr 0.8fr;
-            gap: 30px;
-        }
-
-        @media (max-width: 850px) {
-            .row-split {
-                grid-template-columns: 1fr;
+        /* Responsive Breakpoints */
+        @media (max-width: 900px) {
+            body {
+                flex-direction: column;
             }
-            header h1 {
-                font-size: 2.3rem;
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+                padding: 30px 20px;
+                border-right: none;
+                border-bottom: 1px solid var(--border-color);
+            }
+            .nav-menu {
+                flex-direction: row;
+                flex-wrap: wrap;
+                margin-top: 20px;
+            }
+            .sidebar-footer {
+                display: none; /* Collapses text strings on small visual ports */
+            }
+            .main-content {
+                margin-left: 0;
+                padding: 30px 20px;
             }
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <!-- HERO MAIN HEADER -->
-        <header>
+    <!-- LEFT SIDEBAR STICKY NAVIGATION -->
+    <nav class="sidebar">
+        <div class="profile-info">
             <h1>SHREYAS B</h1>
-            <h2>Data Analyst & ML Enthusiast</h2>
-            <div class="contact-grid">
-                <a href="mailto:bshreyas253@gmail.com">bshreyas253@gmail.com</a>
-                <a href="tel:9481745212">📞 +91 9481745212</a>
-                <a href="https://www.linkedin.com/in/shreyas-balebalpu/" target="_blank">LinkedIn</a>
-                <a href="https://www.hackerrank.com/bshreyas253" target="_blank">HackerRank</a>
-            </div>
-        </header>
+            <p>Data Analyst & ML</p>
+        </div>
 
-        <!-- PROFILE INTRODUCTION -->
-        <section>
+        <div class="nav-menu">
+            <a href="#about" class="nav-item">👤 Brief Info</a>
+            <a href="#ecosystem" class="nav-item">🛠️ Tech Toolkit</a>
+            <a href="#experience" class="nav-item">💼 Experience</a>
+            <a href="#projects" class="nav-item">📊 Implementations</a>
+            <a href="#education" class="nav-item">🎓 Background</a>
+        </div>
+
+        <div class="sidebar-footer">
+            <a href="mailto:bshreyas253@gmail.com">✉️ bshreyas253@gmail.com</a>
+            <a href="tel:9481745212">📞 +91 9481745212</a>
+            <a href="https://www.linkedin.com/in/shreyas-b" target="_blank">🔗 LinkedIn Link</a>
+        </div>
+    </nav>
+
+    <!-- MAIN SCROLLING CONTENT -->
+    <main class="main-content">
+
+        <!-- SECTION 1: ABOUT -->
+        <section id="about">
             <h2>🎯 Professional Brief</h2>
-            <div class="about-box">
+            <div class="about-text">
                 Analytical and forward-thinking Computer Science Engineer specializing in AI/ML and Data Analytics. I build high-impact interactive dashboards, perform comprehensive data cleaning, and engineer modern prediction systems. Experienced across Python environments, relational SQL databases, and modern Business Intelligence tools to bridge data architecture with real-world business choices.
             </div>
         </section>
 
-        <!-- MODERN TOOLKIT -->
-        <section>
+        <!-- SECTION 2: TECH TOOLKIT -->
+        <section id="ecosystem">
             <h2>🛠️ Technical Ecosystem</h2>
             <div class="toolkit-list">
                 <div class="toolkit-item">
@@ -290,32 +360,48 @@
             </div>
         </section>
 
-        <!-- PROJECTS HUB -->
-        <section>
+        <!-- SECTION 3: EXPERIENCE -->
+        <section id="experience">
+            <h2>💼 Experience Portfolio</h2>
+            <div class="card" style="width: 100%;">
+                <div>
+                    <h3>Student Intern — Web Developer</h3>
+                    <div class="subtitle">Technical Career Education</div>
+                    <div class="timeline">Oct 2023 - Dec 2023 | Mangaluru, India</div>
+                    <ul>
+                        <li>Engineered an enterprise change management web tool designed to control project compliance and request pipelines.</li>
+                        <li>Built custom role management settings, approval paths, and visual workflow monitoring interfaces.</li>
+                    </ul>
+                </div>
+                <div class="tag-container">
+                    <span class="tag-badge">JavaScript</span><span class="tag-badge">MySQL</span><span class="tag-badge">HTML5/CSS3</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 4: PROJECTS -->
+        <section id="projects">
             <h2>📊 Key Technical Implementations</h2>
             <div class="grid">
                 <div class="card">
                     <div>
                         <h3>Hospitality Revenue Analytics</h3>
-                        <div class="company">Business Intelligence Engine</div>
-                        <div class="timeline">Interactive Analytics Framework</div>
+                        <div class="subtitle">Business Intelligence Engine</div>
+                        <div class="timeline">Interactive Dashboard Framework</div>
                         <ul>
                             <li>Engineered an interactive dashboard monitoring hotel metrics like revenue streams, cancellations, ADR, and RevPAR.</li>
                             <li>Executed raw data extraction via SQL architecture and structured complex DAX metrics for real-time tracking.</li>
                         </ul>
                     </div>
                     <div class="tag-container">
-                        <span class="tag-badge">Power BI</span>
-                        <span class="tag-badge">SQL</span>
-                        <span class="tag-badge">DAX</span>
-                        <span class="tag-badge">Excel</span>
+                        <span class="tag-badge">Power BI</span><span class="tag-badge">SQL</span><span class="tag-badge">DAX</span>
                     </div>
                 </div>
 
                 <div class="card">
                     <div>
                         <h3>Sales Performance Ecosystem</h3>
-                        <div class="company">Data Architecture & Analytics</div>
+                        <div class="subtitle">Data Architecture & Analytics</div>
                         <div class="timeline">Dynamic Trends Engineering</div>
                         <ul>
                             <li>Built an automated operational dashboard by pipeline-cleaning transactional history using advanced Power Query.</li>
@@ -323,16 +409,14 @@
                         </ul>
                     </div>
                     <div class="tag-container">
-                        <span class="tag-badge">Power BI</span>
-                        <span class="tag-badge">Python</span>
-                        <span class="tag-badge">Power Query</span>
+                        <span class="tag-badge">Power BI</span><span class="tag-badge">Python</span><span class="tag-badge">Power Query</span>
                     </div>
                 </div>
 
                 <div class="card">
                     <div>
                         <h3>Music-Conditioned Dance Generator</h3>
-                        <div class="company">Artificial Intelligence Project</div>
+                        <div class="subtitle">Artificial Intelligence Project</div>
                         <div class="timeline">Deep Learning & Audio Processing</div>
                         <ul>
                             <li>Constructed an AI-driven sequence generator mapping audio rhythmic beats to visual human locomotion paths.</li>
@@ -340,54 +424,32 @@
                         </ul>
                     </div>
                     <div class="tag-container">
-                        <span class="tag-badge">CNN</span>
-                        <span class="tag-badge">GANs</span>
-                        <span class="tag-badge">Streamlit</span>
-                        <span class="tag-badge">Python</span>
+                        <span class="tag-badge">CNN</span><span class="tag-badge">GANs</span><span class="tag-badge">Streamlit</span>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- EXPERIENCE, EDUCATION & CERTS -->
-        <div class="row-split">
-            <section>
-                <h2>💼 Experience Portfolio</h2>
-                <div class="card" style="width: 100%;">
-                    <div>
-                        <h3>Student Intern — Web Developer</h3>
-                        <div class="company">Technical Career Education</div>
-                        <div class="timeline">Oct 2023 - Dec 2023 | Mangaluru, India</div>
-                        <ul>
-                            <li>Engineered an enterprise change management web tool designed to control project compliance and request pipelines.</li>
-                            <li>Built custom role management settings, approval paths, and visual workflow monitoring interfaces.</li>
-                        </ul>
-                    </div>
-                    <div class="tag-container">
-                        <span class="tag-badge">JavaScript</span>
-                        <span class="tag-badge">MySQL</span>
-                        <span class="tag-badge">HTML5/CSS3</span>
-                    </div>
-                </div>
-            </section>
-
-            <section>
-                <h2>🎓 Education & Certifications</h2>
-                <div class="toolkit-item" style="margin-bottom: 15px;">
+        <!-- SECTION 5: EDUCATION BACKGROUND -->
+        <section id="education">
+            <h2>🎓 Background & Accreditations</h2>
+            <div class="grid">
+                <div class="toolkit-item">
                     <h4 style="color:var(--text-main); font-size:1.1rem; text-transform:none; font-weight:600;">B.E. Computer Science (AIML)</h4>
-                    <p style="font-size:0.9rem; color:var(--text-muted);">Sahyadri College of Eng. | 2021-2025</p>
-                    <p style="font-size:0.95rem; margin-top:5px; color:var(--accent-green); font-weight:bold;">CGPA: 8.76</p>
+                    <p style="font-size:0.9rem; color:var(--text-muted); margin-bottom: 8px;">Sahyadri College of Eng. | 2021-2025</p>
+                    <p style="font-size:1rem; color:var(--accent-green); font-weight:bold;">CGPA: 8.76</p>
                 </div>
 
                 <div class="toolkit-item">
-                    <h4>Industry Accreditations</h4>
-                    <p style="font-size:0.9rem; margin-bottom:6px;">• ML & NLP Certification (Infosys Springboard)</p>
-                    <p style="font-size:0.9rem; margin-bottom:6px;">• SQL & NoSQL Fundamentals (Infosys)</p>
+                    <h4>Industry Credentials</h4>
+                    <p style="font-size:0.9rem; margin-bottom:4px;">• ML & NLP Certification (Infosys Springboard)</p>
+                    <p style="font-size:0.9rem; margin-bottom:4px;">• SQL & NoSQL Fundamentals (Infosys)</p>
                     <p style="font-size:0.9rem;">• Cloud & Generative AI Systems (GDSC)</p>
                 </div>
-            </section>
-        </div>
-    </div>
+            </div>
+        </section>
+
+    </main>
 
 </body>
 </html>
